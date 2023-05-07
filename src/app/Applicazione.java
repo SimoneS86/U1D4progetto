@@ -18,34 +18,41 @@ public class Applicazione {
 	            System.out.println("L'oggetto multimediale n." + (i + 1) + " è un audio o un video o un immagine? (a/v/i)");
 	            String tipo = scanner.nextLine();
 
-	            if (tipo.equals("a")) {
-	                System.out.println("Imposta il volume dell'audio (inserisci un numero intero):");
-	                int volume = scanner.nextInt();
+	            switch (tipo) {
+	                case "a":
+	                    System.out.println("Imposta il volume dell'audio (inserisci un numero intero):");
+	                    int volume = scanner.nextInt();
 
-	                System.out.println("Imposta la durata dell'audio (inserisci un numero intero):");
-	                int durata = scanner.nextInt();
+	                    System.out.println("Imposta la durata dell'audio (inserisci un numero intero):");
+	                    int durata = scanner.nextInt();
 
-	                oggettiMultimediali[i] = new Audio(titolo, volume, durata);
-	            } else if (tipo.equals("v")) {
-	                System.out.println("Imposta il volume del video (inserisci un numero intero):");
-	                int volume = scanner.nextInt();
+	                    oggettiMultimediali[i] = new Audio(titolo, volume, durata);
+	                    break;
 
-	                System.out.println("Imposta la durata del video (inserisci un numero intero):");
-	                int durata = scanner.nextInt();
+	                case "v":
+	                    System.out.println("Imposta il volume del video (inserisci un numero intero):");
+	                    volume = scanner.nextInt();
 
-	                System.out.println("Imposta la luminosità del video (inserisci un numero intero):");
-	                int luminosita = scanner.nextInt();
+	                    System.out.println("Imposta la durata del video (inserisci un numero intero):");
+	                    durata = scanner.nextInt();
 
-	                oggettiMultimediali[i] = new Video(titolo, volume, durata, luminosita);
+	                    System.out.println("Imposta la luminosità del video (inserisci un numero intero):");
+	                    int luminosita = scanner.nextInt();
+
+	                    oggettiMultimediali[i] = new Video(titolo, volume, durata, luminosita);
+	                    break;
+
+	                case "i":
+	                    System.out.println("Imposta la luminosità dell'immagine (inserisci un numero intero):");
+	                    luminosita = scanner.nextInt();
+	                    oggettiMultimediali[i] = new Immagine(titolo, luminosita);
+	                    break;
+
+	                default:
+	                    System.out.println("Tipo non valido. Riprova.");
+	                    i--;
+	                    continue;
 	            }
-	            else if (tipo.equals("i")) {
-	            	System.out.println("Imposta la luminosità dell'immagine (inserisci un numero intero):");
-	                int luminosita = scanner.nextInt();
-	                oggettiMultimediali[i] = new Immagine(titolo, luminosita);
-	            } else {
-	            	System.out.println("Scelta non valida riprova!");
-	            }
-
 	            scanner.nextLine();
 	        }
 	        int scelta = -1;
@@ -53,7 +60,7 @@ public class Applicazione {
 	        while (scelta != 0) {
 	            System.out.println("Quale oggetto multimediale vuoi riprodurre? (1-2-3-4-5?, digita 0 per uscire)");
 	            scelta = scanner.nextInt();
-
+	            
 	            if (scelta >= 1 && scelta <= 5) {
 	                OggettoMultimediale oggetto = oggettiMultimediali[scelta - 1];
 
@@ -64,6 +71,8 @@ public class Applicazione {
 	                } else if (oggetto instanceof Immagine) {
 	                    ((Immagine) oggetto).show();
 	                }
+	            } else if (scelta == 0) {
+	            	System.out.println("riproduzione interrotta");
 	            } else {
 	            	System.out.println("Scelta non valida riprova!");
 	            }
