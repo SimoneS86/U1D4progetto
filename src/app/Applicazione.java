@@ -15,7 +15,7 @@ public class Applicazione {
 	            System.out.println("Inserisci il titolo dell'oggetto multimediale n." + (i + 1) + " che vuoi creare:");
 	            String titolo = scanner.nextLine();
 
-	            System.out.println("L'oggetto multimediale n." + (i + 1) + " è un audio o un video o un immagine? (a/v/i)");
+	            System.out.println(titolo + " è un audio (digita 'a'), un video (digita 'v') o un immagine (digita 'i')?");
 	            String tipo = scanner.nextLine();
 
 	            switch (tipo) {

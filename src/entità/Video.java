@@ -9,16 +9,6 @@ public class Video extends Audio implements Riproducibile, Luminosità {
     }
 
     @Override
-    public void play() {
-        for (int i = 0; i < getDurata(); i++) {
-            String puntiEsclamativi = new String(new char[getVolume()]).replace("\0", "!");
-            String asterischi = new String(new char[luminosità]).replace("\0", "*");
-            System.out.println(getTitolo() + " " + puntiEsclamativi + " " + asterischi);
-        }
-    }
-
-
-    @Override
     public int getLuminosità() {
         return luminosità;
     }
@@ -36,6 +26,15 @@ public class Video extends Audio implements Riproducibile, Luminosità {
     @Override
     public void diminuisciLuminosità() {
         this.luminosità--;
+    }
+    
+    @Override
+    public void play() {
+        for (int i = 0; i < getDurata(); i++) {
+            String puntiEsclamativi = new String(new char[getVolume()]).replace("\0", "!");
+            String asterischi = new String(new char[luminosità]).replace("\0", "*");
+            System.out.println(getTitolo() + " " + puntiEsclamativi + " " + asterischi);
+        }
     }
 }
 
